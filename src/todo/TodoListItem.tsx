@@ -44,9 +44,9 @@ type Props = {
     text: string;
     isChecked: boolean;
   };
-  handleDeleteItem: any;
-  handleCheck: any;
-  saveNewData: any;
+  handleDeleteItem: (id: number) => void;
+  handleCheck: (id: number) => void;
+  saveNewData: ({ id: number, text: string }) => void;
 };
 
 type State = {

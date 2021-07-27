@@ -14,11 +14,11 @@ const Input = styled.input({
 });
 
 type Props = {
-  formCallback: any;
+  formCallback: (formData: string) => void;
 };
 
 type State = {
-  text: String;
+  text: string;
 };
 
 export default class TodoForm extends Component<Props, State> {

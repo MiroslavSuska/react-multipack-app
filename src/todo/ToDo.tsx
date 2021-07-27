@@ -11,11 +11,6 @@ type State = {
   }[];
 };
 
-type updatedData = {
-  id: number;
-  text: string;
-};
-
 export default class Todo extends Component<{}, State> {
   constructor(props: any) {
     super(props);
@@ -70,7 +65,7 @@ export default class Todo extends Component<{}, State> {
     });
   };
 
-  saveNewData = (newData: updatedData) => {
+  saveNewData = (newData: { id: number; text: string }) => {
     const updatedData = this.state.dataList.map(item => {
       if (item.id === newData.id) {
         item.text = newData.text;

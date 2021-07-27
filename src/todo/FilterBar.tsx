@@ -27,7 +27,7 @@ const ClearLink = styled.a({
 
 type Props = {
   dataLength: number;
-  clearFilter: any;
+  clearFilter: () => void;
 };
 
 export default class FilterBar extends Component<Props, {}> {
