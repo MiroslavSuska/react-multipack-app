@@ -2,11 +2,10 @@ import { Component } from 'react';
 import { Link, Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import Counter from './counter/Counter';
 import Home from './router-components/Home';
-import TODO from './todo/ToDo';
+import Todo from './todo/Todo';
 import styled from 'styled-components';
 
 const Li = styled.li`
-  //width: 50%;
   flex-shrink: 2;
   align-items: center;
   justify-content: center;
@@ -69,11 +68,11 @@ export class Navigation extends Component<any, any> {
           {/* A <Switch> looks through its children <Route>s and
                   renders the first one that matches the current URL. */}
           <Switch>
-            <Route path='/todo'>
-              <TODO />
-            </Route>
             <Route path='/counter'>
               <Counter />
+            </Route>
+            <Route path='/todo'>
+              <Todo />
             </Route>
             <Route path='/'>
               <Home />
