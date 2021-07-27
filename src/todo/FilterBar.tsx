@@ -39,9 +39,8 @@ export default class FilterBar extends Component<Props, {}> {
     return (
       <OuterDiv>
         <DivItems>
-          {`${this.props.dataLength} item${
-            this.props.dataLength > 1 || this.props.dataLength < 1 ? 's' : ''
-          } left`}
+          {this.props.dataLength} item
+          {this.props.dataLength === 0 ? '' : 's'} left
         </DivItems>
         <div>
           <ClearLink href='#' onClick={this.clearFilter}>

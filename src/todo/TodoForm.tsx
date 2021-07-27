@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import React from 'react';
 import styled from 'styled-components';
 
 const Input = styled.input({
@@ -22,13 +21,11 @@ type State = {
 };
 
 export default class TodoForm extends Component<Props, State> {
-  formRef: React.RefObject<HTMLInputElement>;
   constructor(props: Props) {
     super(props);
     this.state = {
       text: '',
     };
-    this.formRef = React.createRef();
   }
 
   handleChange = (event: any) => {
@@ -37,7 +34,7 @@ export default class TodoForm extends Component<Props, State> {
 
   handleSubmit = (event: any) => {
     event.preventDefault();
-    if (this.formRef.current !== null && this.formRef.current.value) {
+    if (this.state.text) {
       this.props.formCallback(this.state.text);
       this.resetForm();
     }
@@ -47,16 +44,13 @@ export default class TodoForm extends Component<Props, State> {
     this.setState({
       text: '',
     });
-    if (this.formRef.current !== null) {
-      this.formRef.current.value = '';
-    }
   };
 
   render() {
     return (
       <div>
         <form action='' onSubmit={this.handleSubmit}>
-          <Input type='text' onChange={this.handleChange} ref={this.formRef} autoFocus />
+          <Input type='text' onChange={this.handleChange} value={this.state.text} autoFocus />
         </form>
       </div>
     );
