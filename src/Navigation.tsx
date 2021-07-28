@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { Link, Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import Counter from './counter/Counter';
+import HackerTyper from './hacker-typer/HackerTyper';
 import Home from './router-components/Home';
 import Todo from './todo/Todo';
 import styled from 'styled-components';
@@ -62,6 +63,9 @@ export class Navigation extends Component<any, any> {
               <Li>
                 <LinkStyled to='/todo'>Todo app</LinkStyled>
               </Li>
+              <Li>
+                <LinkStyled to='/hackertyper'>Hacker Typer</LinkStyled>
+              </Li>
             </Ul>
           </nav>
 
@@ -73,6 +77,9 @@ export class Navigation extends Component<any, any> {
             </Route>
             <Route path='/todo'>
               <Todo />
+            </Route>
+            <Route path='/hackertyper'>
+              <HackerTyper />
             </Route>
             <Route path='/'>
               <Home />
