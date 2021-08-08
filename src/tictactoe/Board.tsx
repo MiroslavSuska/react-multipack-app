@@ -14,15 +14,25 @@ const DivBoard = styled.div({
 type squareType = null | 'X' | 'O';
 
 type Props = {
-  squares: squareType[];
-  squareClicked: (index: number) => void;
+  squares: squareType[][];
+  squareClicked: (index: string) => void;
 };
 
 export default class Board extends Component<Props, {}> {
   render() {
-    const squares = this.props.squares.map((square, index) => (
-      <Square symbol={square} squareClicked={this.props.squareClicked} key={index} index={index} />
-    ));
-    return <DivBoard>{squares}</DivBoard>;
+    return (
+      <DivBoard>
+        {this.props.squares.map((row, rIndex) =>
+          row.map((column, cIndex) => (
+            <Square
+              symbol={column}
+              squareClicked={this.props.squareClicked}
+              key={rIndex.toString() + cIndex.toString()}
+              index={rIndex.toString() + cIndex.toString()}
+            />
+          ))
+        )}
+      </DivBoard>
+    );
   }
 }

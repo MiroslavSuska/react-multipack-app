@@ -18,8 +18,8 @@ const DivSquare = styled.div({
 
 type Props = {
   symbol: null | 'X' | 'O';
-  index: number;
-  squareClicked: (index: number) => void;
+  index: string;
+  squareClicked: (index: string) => void;
 };
 
 export default class Square extends Component<Props, {}> {

@@ -1,7 +1,13 @@
 import { Component } from 'react';
+import { checkWinner } from './winningLogic';
 import Board from './Board';
 import styled from 'styled-components';
 import theme from './theme';
+
+/* GRID INFO 
+  Grid will be GRID_SIZE x GRID_SIZE
+*/
+const GRID_SIZE = 10;
 
 const DivOuter = styled.div({
   marginBottom: '50px',
@@ -39,61 +45,61 @@ const Button = styled.button({
 });
 
 type squareType = null | 'X' | 'O';
+type player = 'X' | 'O';
 
 type State = {
-  player: 'X' | 'O';
-  numOfSquares: number;
-  board: squareType[];
+  player: player;
+  prevPlayer: player;
+  board: squareType[][];
 };
-
-const NUM_OF_SQUARES = 100;
-
 export default class TicTacToe extends Component<{}, State> {
   constructor(props: {}) {
     super(props);
     this.state = {
       player: 'X',
-      numOfSquares: 100,
-      board: [],
+      prevPlayer: 'O',
+      board: Array.from({ length: GRID_SIZE }, () => Array.from({ length: GRID_SIZE }, () => null)),
     };
   }
 
-  componentDidMount() {
+  initBoard = () => {
     this.setState({
-      board: Array.from({ length: NUM_OF_SQUARES }, () => null),
+      board: Array.from({ length: GRID_SIZE }, () => Array.from({ length: GRID_SIZE }, () => null)),
     });
+  };
+
+  componentDidUpdate() {
+    setTimeout(this.checkBoard, 1000);
   }
 
-  handleSquareClick = (index: number) => {
-    let playerSymbol = this.state.player;
-    let board = this.state.board;
+  handleSquareClick = (index: string) => {
+    let copyBoard = [...this.state.board];
+    let rowID = parseInt(index[0]);
+    let columnID = parseInt(index[1]);
 
-    if (board[index] === null) {
-      board[index] = playerSymbol;
-      playerSymbol = playerSymbol === 'X' ? 'O' : 'X';
+    if (copyBoard[rowID][columnID] === null) {
+      this.setState(prevState => ({
+        player: prevState.player === 'X' ? 'O' : 'X',
+        prevPlayer: prevState.prevPlayer === 'O' ? 'X' : 'O',
+        board: prevState.board.map((rowItem, rID) =>
+          rowItem.map((columnItem, cID) =>
+            rID === rowID && cID === columnID ? prevState.player : columnItem
+          )
+        ),
+      }));
     }
-
-    this.setState({
-      player: playerSymbol,
-      board: board,
-    });
-
-    this.checkBoard();
   };
 
   checkBoard = () => {
-    if (this.state.board.every(square => square !== null)) {
-      alert('All squares are filled, lets try new game again');
-      this.newGame();
+    if (checkWinner(this.state.board)) {
+      alert('Winner is player ' + this.state.prevPlayer);
+      this.initBoard();
     }
-  };
 
-  newGame = () => {
-    let clearedBoard = this.state.board.map(e => null);
-
-    this.setState({
-      board: clearedBoard,
-    });
+    if (this.state.board.every(row => row.every(column => column !== null))) {
+      alert('All squares are filled, lets try new game again');
+      this.initBoard();
+    }
   };
 
   render() {
@@ -105,7 +111,7 @@ export default class TicTacToe extends Component<{}, State> {
         </DivBoardWrapper>
         <div>
           <DivPlayer>Player turn: {this.state.player}</DivPlayer>
-          <Button onClick={this.newGame}>New game</Button>
+          <Button onClick={this.initBoard}>New game</Button>
         </div>
       </DivOuter>
     );
