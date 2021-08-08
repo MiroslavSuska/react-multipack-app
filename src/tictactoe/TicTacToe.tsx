@@ -5,6 +5,11 @@ import styled from 'styled-components';
 import theme from '../theme';
 
 const SQUARE_GRID_SIZE = 10;
+const setGrid = () => {
+  return Array.from({ length: SQUARE_GRID_SIZE }, () =>
+    Array.from({ length: SQUARE_GRID_SIZE }, () => null)
+  );
+};
 
 const DivOuter = styled.div({
   marginBottom: '50px',
@@ -57,20 +62,14 @@ export default class TicTacToe extends Component<Props, State> {
     this.state = {
       player: 'X',
       prevPlayer: 'O',
-      board: this.setGrid(),
+      board: setGrid(),
     };
   }
 
   initBoard = () => {
     this.setState({
-      board: this.setGrid(),
+      board: setGrid(),
     });
-  };
-
-  setGrid = () => {
-    return Array.from({ length: SQUARE_GRID_SIZE }, () =>
-      Array.from({ length: SQUARE_GRID_SIZE }, () => null)
-    );
   };
 
   handleSquareClick = (index: string) => {
@@ -99,7 +98,9 @@ export default class TicTacToe extends Component<Props, State> {
       this.initBoard();
     }
 
-    if (this.state.board.every(row => row.every(column => column !== null))) {
+    const allSquaresFilled = this.state.board.every(row => row.every(column => column !== null));
+
+    if (allSquaresFilled) {
       alert('All squares are filled, lets try new game again');
       this.initBoard();
     }
