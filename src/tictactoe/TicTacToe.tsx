@@ -73,24 +73,23 @@ export default class TicTacToe extends Component<Props, State> {
     );
   };
 
-  componentDidUpdate() {
-    this.checkBoard();
-  }
-
   handleSquareClick = (index: string) => {
     let rowID = parseInt(index[0]);
     let columnID = parseInt(index[1]);
 
     if (this.state.board[rowID][columnID] === null) {
-      this.setState(prevState => ({
-        player: prevState.player === 'X' ? 'O' : 'X',
-        prevPlayer: prevState.prevPlayer === 'O' ? 'X' : 'O',
-        board: prevState.board.map((rowItem, rID) =>
-          rowID === rID
-            ? rowItem.map((columnItem, cID) => (cID === columnID ? prevState.player : columnItem))
-            : rowItem
-        ),
-      }));
+      this.setState(
+        prevState => ({
+          player: prevState.player === 'X' ? 'O' : 'X',
+          prevPlayer: prevState.prevPlayer === 'O' ? 'X' : 'O',
+          board: prevState.board.map((rowItem, rID) =>
+            rowID === rID
+              ? rowItem.map((columnItem, cID) => (cID === columnID ? prevState.player : columnItem))
+              : rowItem
+          ),
+        }),
+        () => this.checkBoard()
+      );
     }
   };
 
