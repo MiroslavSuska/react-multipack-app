@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import Square from './Square';
 import styled from 'styled-components';
-import theme from './theme';
+import theme from '../theme';
 
 const DivBoard = styled.div({
   width: theme.boardSize,

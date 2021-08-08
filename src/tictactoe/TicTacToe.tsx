@@ -2,12 +2,9 @@ import { Component } from 'react';
 import { checkWinner } from './winningLogic';
 import Board from './Board';
 import styled from 'styled-components';
-import theme from './theme';
+import theme from '../theme';
 
-/* GRID INFO 
-  Grid will be GRID_SIZE x GRID_SIZE
-*/
-const GRID_SIZE = 10;
+const SQUARE_GRID_SIZE = 10;
 
 const DivOuter = styled.div({
   marginBottom: '50px',
@@ -52,39 +49,46 @@ type State = {
   prevPlayer: player;
   board: squareType[][];
 };
-export default class TicTacToe extends Component<{}, State> {
-  constructor(props: {}) {
+
+type Props = {};
+export default class TicTacToe extends Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = {
       player: 'X',
       prevPlayer: 'O',
-      board: Array.from({ length: GRID_SIZE }, () => Array.from({ length: GRID_SIZE }, () => null)),
+      board: this.setGrid(),
     };
   }
 
   initBoard = () => {
     this.setState({
-      board: Array.from({ length: GRID_SIZE }, () => Array.from({ length: GRID_SIZE }, () => null)),
+      board: this.setGrid(),
     });
   };
 
+  setGrid = () => {
+    return Array.from({ length: SQUARE_GRID_SIZE }, () =>
+      Array.from({ length: SQUARE_GRID_SIZE }, () => null)
+    );
+  };
+
   componentDidUpdate() {
-    setTimeout(this.checkBoard, 1000);
+    this.checkBoard();
   }
 
   handleSquareClick = (index: string) => {
-    let copyBoard = [...this.state.board];
     let rowID = parseInt(index[0]);
     let columnID = parseInt(index[1]);
 
-    if (copyBoard[rowID][columnID] === null) {
+    if (this.state.board[rowID][columnID] === null) {
       this.setState(prevState => ({
         player: prevState.player === 'X' ? 'O' : 'X',
         prevPlayer: prevState.prevPlayer === 'O' ? 'X' : 'O',
         board: prevState.board.map((rowItem, rID) =>
-          rowItem.map((columnItem, cID) =>
-            rID === rowID && cID === columnID ? prevState.player : columnItem
-          )
+          rowID === rID
+            ? rowItem.map((columnItem, cID) => (cID === columnID ? prevState.player : columnItem))
+            : rowItem
         ),
       }));
     }

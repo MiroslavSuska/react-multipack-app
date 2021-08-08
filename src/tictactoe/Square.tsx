@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import styled from 'styled-components';
-import theme from './theme';
+import theme from '../theme';
 
 const DivSquare = styled.div({
   width: theme.squareSize,
