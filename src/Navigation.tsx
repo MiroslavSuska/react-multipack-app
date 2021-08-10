@@ -3,6 +3,7 @@ import { Link, Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import Counter from './counter/Counter';
 import HackerTyper from './hacker-typer/HackerTyper';
 import Home from './router-components/Home';
+import MemoryGame from './pexeso/MemoryGame';
 import TicTacToe from './tictactoe/TicTacToe';
 import Todo from './todo/Todo';
 import styled from 'styled-components';
@@ -70,6 +71,9 @@ export class Navigation extends Component<any, any> {
               <Li>
                 <LinkStyled to='/tictactoe'>Tic Tac Toe</LinkStyled>
               </Li>
+              <Li>
+                <LinkStyled to='/pexeso'>Pexeso</LinkStyled>
+              </Li>
             </Ul>
           </nav>
 
@@ -87,6 +91,9 @@ export class Navigation extends Component<any, any> {
             </Route>
             <Route path='/tictactoe'>
               <TicTacToe />
+            </Route>
+            <Route path='/pexeso'>
+              <MemoryGame />
             </Route>
             <Route path='/'>
               <Home />
