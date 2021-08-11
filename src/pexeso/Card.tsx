@@ -26,7 +26,7 @@ type Props = {
     matched: boolean;
     value: number;
   };
-  turned: boolean;
+  shouldTurnBack: boolean;
   disabled: boolean;
   matched: boolean;
   cardClicked: ({ index, value: number, turned: boolean }) => void;
@@ -34,7 +34,7 @@ type Props = {
 export default function Card(props: Props) {
   const [turned, setTurned] = useState(false);
   const handleClick = () => {
-    if (!turned && !props.disabled) {
+    if (turned === false && props.disabled === false) {
       setTurned(true);
       props.cardClicked({ index: props.card.id, value: props.card.value, turned });
     }
@@ -42,7 +42,7 @@ export default function Card(props: Props) {
 
   useEffect(() => {
     setTurned(false);
-  }, [props.turned]);
+  }, [props.shouldTurnBack]);
 
   return (
     <div onClick={handleClick}>

@@ -49,10 +49,11 @@ type card = {
  * Well optimized shuffle
  * https://bost.ocks.org/mike/shuffle/
  */
-const shuffleDeck = (cards: card[]) => {
-  let remaining = cards.length;
-  let pom1: card | number;
-  let pom2: card | number;
+const shuffleDeck = function <T>(cards: T[]) {
+  let resultArray = [...cards];
+  let remaining = resultArray.length;
+  let pom1: T | number;
+  let pom2: T | number;
 
   // While there remain elements to shuffle…
   while (remaining) {
@@ -60,11 +61,11 @@ const shuffleDeck = (cards: card[]) => {
     pom2 = Math.floor(Math.random() * remaining--);
 
     // And swap it with the current element.
-    pom1 = cards[remaining];
-    cards[remaining] = cards[pom2];
-    cards[pom2] = pom1;
+    pom1 = resultArray[remaining];
+    resultArray[remaining] = resultArray[pom2];
+    resultArray[pom2] = pom1;
   }
-  return cards;
+  return resultArray;
 };
 
 export default function MemoryGame() {
@@ -72,7 +73,7 @@ export default function MemoryGame() {
   const [chosenCards, setChosenCards] = useState<number[]>([]);
   const [matchedCards, setMatchedCards] = useState<number[]>([]);
   const [disabledCards, setDisabledCards] = useState(false);
-  const [turned, setTurned] = useState(false);
+  const [shouldTurnBack, setShouldTurnBack] = useState(false);
 
   const disableAll = () => {
     setDisabledCards(true);
@@ -83,11 +84,11 @@ export default function MemoryGame() {
   };
 
   const turnBack = () => {
-    setTurned(!turned);
+    setShouldTurnBack(true);
   };
 
   const isMatched = (value: number) => {
-    return Boolean(matchedCards.includes(value));
+    return matchedCards.includes(value);
   };
 
   const checkMatch = () => {
@@ -130,14 +131,15 @@ export default function MemoryGame() {
     setChosenCards([]);
     setMatchedCards([]);
     setDisabledCards(false);
-    setTurned(false);
+    setShouldTurnBack(false);
   };
 
   useEffect(() => {
-    let timeout: any = null;
+    let timeout: NodeJS.Timeout;
     if (chosenCards.length === 2) {
       timeout = setTimeout(() => {
         checkMatch();
+        setShouldTurnBack(false);
       }, 500);
     }
 
@@ -159,7 +161,7 @@ export default function MemoryGame() {
             key={card.id}
             card={card}
             cardClicked={handleClick}
-            turned={turned}
+            shouldTurnBack={shouldTurnBack}
             disabled={disabledCards}
             matched={isMatched(card.value)}
           />
