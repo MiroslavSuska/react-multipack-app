@@ -41,6 +41,7 @@ const Button = styled.button({
 type card = {
   id: number;
   matched: boolean;
+  turned: boolean;
   value: number;
   image: string;
 };
@@ -84,7 +85,11 @@ export default function MemoryGame() {
   };
 
   const turnBack = () => {
-    setShouldTurnBack(true);
+    setDeck(prevCards =>
+      prevCards.map(card => {
+        return { ...card, turned: false };
+      })
+    );
   };
 
   const isMatched = (value: number) => {
@@ -106,16 +111,20 @@ export default function MemoryGame() {
     }
   };
 
-  const handleClick = (clickedCard: { index: number; value: number; turned: boolean }) => {
+  const handleClick = (clickedCard: { index: number; value: number }) => {
     if (chosenCards.length === 2) return;
 
-    if (!clickedCard.turned) {
-      if (chosenCards.length === 1) {
-        setChosenCards(prevCards => [...prevCards, clickedCard.value]);
-        disableAll();
-      } else {
-        setChosenCards([clickedCard.value]);
-      }
+    setDeck(prevCards =>
+      prevCards.map(card => {
+        return card.id === clickedCard.index ? { ...card, turned: !card.turned } : card;
+      })
+    );
+
+    if (chosenCards.length === 1) {
+      setChosenCards(prevCards => [...prevCards, clickedCard.value]);
+      disableAll();
+    } else {
+      setChosenCards([clickedCard.value]);
     }
   };
 
@@ -131,7 +140,6 @@ export default function MemoryGame() {
     setChosenCards([]);
     setMatchedCards([]);
     setDisabledCards(false);
-    setShouldTurnBack(false);
   };
 
   useEffect(() => {
@@ -139,7 +147,6 @@ export default function MemoryGame() {
     if (chosenCards.length === 2) {
       timeout = setTimeout(() => {
         checkMatch();
-        setShouldTurnBack(false);
       }, 500);
     }
 
@@ -161,7 +168,6 @@ export default function MemoryGame() {
             key={card.id}
             card={card}
             cardClicked={handleClick}
-            shouldTurnBack={shouldTurnBack}
             disabled={disabledCards}
             matched={isMatched(card.value)}
           />

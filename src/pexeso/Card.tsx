@@ -24,30 +24,24 @@ type Props = {
     id: number;
     image: string;
     matched: boolean;
+    turned: boolean;
     value: number;
   };
-  shouldTurnBack: boolean;
   disabled: boolean;
   matched: boolean;
-  cardClicked: ({ index, value: number, turned: boolean }) => void;
+  cardClicked: ({ index, value: number }) => void;
 };
 export default function Card(props: Props) {
-  const [turned, setTurned] = useState(false);
   const handleClick = () => {
-    if (turned === false && props.disabled === false) {
-      setTurned(true);
-      props.cardClicked({ index: props.card.id, value: props.card.value, turned });
+    if (props.card.turned === false && props.disabled === false) {
+      props.cardClicked({ index: props.card.id, value: props.card.value });
     }
   };
 
-  useEffect(() => {
-    setTurned(false);
-  }, [props.shouldTurnBack]);
-
   return (
     <div onClick={handleClick}>
-      {turned && !props.matched && <Img src={props.card.image} />}
-      {!turned && !props.matched && <Img src={coverFrame} />}
+      {props.card.turned && !props.matched && <Img src={props.card.image} />}
+      {!props.card.turned && !props.matched && <Img src={coverFrame} />}
       {props.matched && <DivEmpty />}
     </div>
   );
