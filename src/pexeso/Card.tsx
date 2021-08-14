@@ -27,13 +27,12 @@ type Props = {
     turned: boolean;
     value: number;
   };
-  disabled: boolean;
   matched: boolean;
   cardClicked: ({ index, value: number }) => void;
 };
 export default function Card(props: Props) {
   const handleClick = () => {
-    if (props.card.turned === false && props.disabled === false) {
+    if (props.card.turned === false && props.matched === false) {
       props.cardClicked({ index: props.card.id, value: props.card.value });
     }
   };

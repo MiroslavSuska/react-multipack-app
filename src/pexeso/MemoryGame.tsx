@@ -70,19 +70,9 @@ const shuffleDeck = function <T>(cards: T[]) {
 };
 
 export default function MemoryGame() {
-  const [deck, setDeck] = useState(() => shuffleDeck(cards));
+  const [deck, setDeck] = useState(shuffleDeck(cards));
   const [chosenCards, setChosenCards] = useState<number[]>([]);
   const [matchedCards, setMatchedCards] = useState<number[]>([]);
-  const [disabledCards, setDisabledCards] = useState(false);
-  const [shouldTurnBack, setShouldTurnBack] = useState(false);
-
-  const disableAll = () => {
-    setDisabledCards(true);
-  };
-
-  const enableAll = () => {
-    setDisabledCards(false);
-  };
 
   const turnBack = () => {
     setDeck(prevCards =>
@@ -102,11 +92,9 @@ export default function MemoryGame() {
     if (cardA === cardB) {
       setMatchedCards(prev => [...prev, cardA]);
       setChosenCards([]);
-      enableAll();
       return;
     } else {
       setChosenCards([]);
-      enableAll();
       turnBack();
     }
   };
@@ -120,12 +108,7 @@ export default function MemoryGame() {
       })
     );
 
-    if (chosenCards.length === 1) {
-      setChosenCards(prevCards => [...prevCards, clickedCard.value]);
-      disableAll();
-    } else {
-      setChosenCards([clickedCard.value]);
-    }
+    setChosenCards(prevCards => [...prevCards, clickedCard.value]);
   };
 
   const checkWin = () => {
@@ -139,7 +122,6 @@ export default function MemoryGame() {
     setDeck(shuffleDeck(cards));
     setChosenCards([]);
     setMatchedCards([]);
-    setDisabledCards(false);
   };
 
   useEffect(() => {
@@ -168,7 +150,6 @@ export default function MemoryGame() {
             key={card.id}
             card={card}
             cardClicked={handleClick}
-            disabled={disabledCards}
             matched={isMatched(card.value)}
           />
         ))}
