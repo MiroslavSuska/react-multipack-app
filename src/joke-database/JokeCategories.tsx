@@ -1,4 +1,5 @@
 import { Link, Route, BrowserRouter as Router, Switch, useRouteMatch } from 'react-router-dom';
+import { categoryJokeURL } from './configAPI';
 import { useEffect, useState } from 'react';
 import Error from './Error';
 import SpecificCategory from './SpecificCategory';
@@ -39,7 +40,7 @@ export default function JokeCategories() {
 
   useEffect(() => {
     axios
-      .get('https://api.chucknorris.io/jokes/categories')
+      .get(categoryJokeURL)
       .then(res => {
         setCategories(res.data);
       })

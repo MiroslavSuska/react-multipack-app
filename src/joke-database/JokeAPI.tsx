@@ -1,3 +1,4 @@
+import { randomJokeURL } from './configAPI';
 import { useEffect, useState } from 'react';
 import Error from './Error';
 import JokeCategories from './JokeCategories';
@@ -49,7 +50,7 @@ export default function JokeAPI() {
     let arrRandomJokes: joke[] = [];
     while (arrRandomJokes.length < NUMBER_OF_RANDOM_JOKES) {
       await axios
-        .get('https://api.chucknorris.io/jokes/random')
+        .get(randomJokeURL)
         .then(res => {
           if (!arrRandomJokes.includes(res.data)) {
             arrRandomJokes.push(res.data);

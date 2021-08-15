@@ -1,3 +1,4 @@
+import { randomJokeURL } from './configAPI';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Error from './Error';
@@ -56,7 +57,7 @@ export default function SpecificCategory() {
         break;
       }
       await axios
-        .get(`https://api.chucknorris.io/jokes/random?category=${category}`)
+        .get(randomJokeURL + `?category=${category}`)
         .then(res => {
           if (!arrRandomJokes.includes(res.data.value)) {
             arrRandomJokes.push(res.data.value);
