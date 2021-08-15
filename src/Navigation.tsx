@@ -3,6 +3,8 @@ import { Link, Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import Counter from './counter/Counter';
 import HackerTyper from './hacker-typer/HackerTyper';
 import Home from './router-components/Home';
+import JokeAPI from './joke-database/JokeAPI';
+import MarkdownBlog from './markdown-blog/MarkdownBlog';
 import MemoryGame from './pexeso/MemoryGame';
 import TicTacToe from './tictactoe/TicTacToe';
 import Todo from './todo/Todo';
@@ -74,6 +76,12 @@ export class Navigation extends Component<any, any> {
               <Li>
                 <LinkStyled to='/pexeso'>Pexeso</LinkStyled>
               </Li>
+              <Li>
+                <LinkStyled to='/markdownblog'>Markdown blog</LinkStyled>
+              </Li>
+              <Li>
+                <LinkStyled to='/jokeapi'>Joke API DB</LinkStyled>
+              </Li>
             </Ul>
           </nav>
 
@@ -94,6 +102,12 @@ export class Navigation extends Component<any, any> {
             </Route>
             <Route path='/pexeso'>
               <MemoryGame />
+            </Route>
+            <Route path='/markdownblog'>
+              <MarkdownBlog />
+            </Route>
+            <Route path='/jokeapi'>
+              <JokeAPI />
             </Route>
             <Route path='/'>
               <Home />

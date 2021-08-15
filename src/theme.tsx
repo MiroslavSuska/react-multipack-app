@@ -3,6 +3,7 @@ const theme = {
   secondaryDark: '#1d1e1f',
   whiteColor: 'white',
   blackColor: 'black',
+  redColor: 'red',
   transparent: 'transparent',
   boardSize: '500px',
   squareSize: '50px',
