@@ -48,29 +48,30 @@ export default function SpecificCategory() {
 
   const fetchCategoryJokes = async () => {
     setLoading(true);
+    try {
+      let arrRandomJokes: joke[] = [];
+      let fetchTime = 0;
+      while (arrRandomJokes.length < NUMBER_OF_SINGLE_CATEGORY_JOKES) {
+        fetchTime++;
 
-    let arrRandomJokes: joke[] = [];
-    let fetchTime = 0;
-    while (arrRandomJokes.length < NUMBER_OF_SINGLE_CATEGORY_JOKES) {
-      fetchTime++;
-      if (fetchTime > NUMBER_OF_SINGLE_CATEGORY_JOKES * 2) {
-        break;
+        if (fetchTime > NUMBER_OF_SINGLE_CATEGORY_JOKES * 2) {
+          break;
+        }
+
+        let response = await axios.get(randomJokeURL + `?category=${category}`);
+        let data = await response.data;
+
+        if (!arrRandomJokes.includes(data.value)) {
+          arrRandomJokes.push(data.value);
+          setCategoryJokes([...arrRandomJokes]);
+        } else return;
       }
-      await axios
-        .get(randomJokeURL + `?category=${category}`)
-        .then(res => {
-          if (!arrRandomJokes.includes(res.data.value)) {
-            arrRandomJokes.push(res.data.value);
-          } else return;
-        })
-        .catch(error => setError(error))
-        .finally(() => {
-          setError(null);
-        });
+    } catch (error) {
+      setError(error);
+    } finally {
+      setError(null);
+      setLoading(false);
     }
-
-    setCategoryJokes(arrRandomJokes);
-    setLoading(false);
   };
 
   return (

@@ -49,17 +49,17 @@ export default function JokeAPI() {
     setLoading(true);
     let arrRandomJokes: joke[] = [];
     while (arrRandomJokes.length < NUMBER_OF_RANDOM_JOKES) {
-      await axios
-        .get(randomJokeURL)
-        .then(res => {
-          if (!arrRandomJokes.includes(res.data)) {
-            arrRandomJokes.push(res.data);
-          }
-        })
-        .catch(error => setError(error))
-        .finally(() => {
-          setError(null);
-        });
+      try {
+        let response = await axios.get(randomJokeURL);
+        let data = await response.data;
+        if (!arrRandomJokes.includes(data)) {
+          arrRandomJokes.push(data);
+        }
+      } catch (error) {
+        setError(error);
+      } finally {
+        setError(null);
+      }
     }
     setRandomJokes(arrRandomJokes);
     setLoading(false);
