@@ -39,20 +39,18 @@ export default function JokeCategories() {
   let { path, url } = useRouteMatch();
 
   useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get<category[]>(categoryJokeURL);
+        const data = response.data;
+        setCategories(data);
+      } catch (error) {
+        setError(error);
+      }
+    };
+
     fetchCategories();
   }, []);
-
-  const fetchCategories = async () => {
-    try {
-      let response = await axios.get(categoryJokeURL);
-      let data = await response.data;
-      setCategories(data);
-    } catch (error) {
-      setError(error);
-    } finally {
-      setError(null);
-    }
-  };
 
   return (
     <DivOuter>

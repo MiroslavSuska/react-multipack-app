@@ -38,7 +38,7 @@ const NUMBER_OF_RANDOM_JOKES = 20;
 
 export default function JokeAPI() {
   const [randomJokes, setRandomJokes] = useState<joke[]>([]);
-  const [error, setError] = useState(null as null | string);
+  const [errors, setErrors] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -50,15 +50,13 @@ export default function JokeAPI() {
     let arrRandomJokes: joke[] = [];
     while (arrRandomJokes.length < NUMBER_OF_RANDOM_JOKES) {
       try {
-        let response = await axios.get(randomJokeURL);
-        let data = await response.data;
+        const response = await axios.get<joke>(randomJokeURL);
+        const data = response.data;
         if (!arrRandomJokes.includes(data)) {
           arrRandomJokes.push(data);
         }
-      } catch (error) {
-        setError(error);
-      } finally {
-        setError(null);
+      } catch (fetchError) {
+        setErrors([...errors, fetchError]);
       }
     }
     setRandomJokes(arrRandomJokes);
@@ -69,7 +67,7 @@ export default function JokeAPI() {
       <h1>Chuck Norris joke API </h1>
       <h2>Random jokes:</h2>
 
-      {error && <Error errorText={error} />}
+      {errors.length > 0 && errors.map((error, index) => <Error errorText={error} key={index} />)}
       {loading && <Loading />}
 
       <Ul>
