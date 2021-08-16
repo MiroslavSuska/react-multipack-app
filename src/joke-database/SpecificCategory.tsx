@@ -49,7 +49,7 @@ export const SpecificCategory = () => {
   const fetchCategoryJokes = async () => {
     setLoading(true);
     try {
-      let arrRandomJokes: joke[] = [];
+      const arrRandomJokes: joke[] = [];
       let fetchTime = 0;
       while (arrRandomJokes.length < NUMBER_OF_SINGLE_CATEGORY_JOKES) {
         fetchTime++;
