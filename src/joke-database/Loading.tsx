@@ -7,6 +7,6 @@ const DivLoading = styled.div({
   fontWeight: 'bold',
 });
 
-export default function Loading() {
+export const Loading = () => {
   return <DivLoading> Fetching data ... </DivLoading>;
-}
+};

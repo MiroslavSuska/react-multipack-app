@@ -1,8 +1,8 @@
-import { randomJokeURL } from './configAPI';
+import { Error } from './Error';
+import { JokeCategories } from './JokeCategories';
+import { Loading } from './Loading';
+import { urls } from './configAPI';
 import { useEffect, useState } from 'react';
-import Error from './Error';
-import JokeCategories from './JokeCategories';
-import Loading from './Loading';
 import axios from 'axios';
 import styled from 'styled-components';
 import theme from '../theme';
@@ -36,7 +36,7 @@ type joke = {
 
 const NUMBER_OF_RANDOM_JOKES = 20;
 
-export default function JokeAPI() {
+export const JokeAPI = () => {
   const [randomJokes, setRandomJokes] = useState<joke[]>([]);
   const [errors, setErrors] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
@@ -47,10 +47,10 @@ export default function JokeAPI() {
 
   const fetchRandomJokes = async () => {
     setLoading(true);
-    let arrRandomJokes: joke[] = [];
+    const arrRandomJokes: joke[] = [];
     while (arrRandomJokes.length < NUMBER_OF_RANDOM_JOKES) {
       try {
-        const response = await axios.get<joke>(randomJokeURL);
+        const response = await axios.get<joke>(urls.randomJokeURL);
         const data = response.data;
         if (!arrRandomJokes.includes(data)) {
           arrRandomJokes.push(data);
@@ -79,4 +79,4 @@ export default function JokeAPI() {
       <JokeCategories />
     </DivRandomJokes>
   );
-}
+};

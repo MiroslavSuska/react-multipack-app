@@ -1,9 +1,9 @@
 import { Component } from 'react';
+import { JokeAPI } from './joke-database/JokeAPI';
 import { Link, Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import Counter from './counter/Counter';
 import HackerTyper from './hacker-typer/HackerTyper';
 import Home from './router-components/Home';
-import JokeAPI from './joke-database/JokeAPI';
 import MarkdownBlog from './markdown-blog/MarkdownBlog';
 import MemoryGame from './pexeso/MemoryGame';
 import TicTacToe from './tictactoe/TicTacToe';

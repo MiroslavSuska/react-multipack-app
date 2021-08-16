@@ -1,8 +1,9 @@
+import { Error } from './Error';
 import { Link, Route, BrowserRouter as Router, Switch, useRouteMatch } from 'react-router-dom';
-import { categoryJokeURL } from './configAPI';
+import { Loading } from './Loading';
+import { SpecificCategory } from './SpecificCategory';
+import { urls } from './configAPI';
 import { useEffect, useState } from 'react';
-import Error from './Error';
-import SpecificCategory from './SpecificCategory';
 import axios from 'axios';
 import styled from 'styled-components';
 import theme from '../theme';
@@ -33,20 +34,24 @@ type category = {
   categoryName: string;
 };
 
-export default function JokeCategories() {
+export const JokeCategories = () => {
   const [categories, setCategories] = useState<category[]>([]);
   const [error, setError] = useState(null as null | string);
+  const [loading, setLoading] = useState(false);
   let { path, url } = useRouteMatch();
 
   useEffect(() => {
     const fetchCategories = async () => {
+      setLoading(true);
       try {
-        const response = await axios.get<category[]>(categoryJokeURL);
+        const response = await axios.get<category[]>(urls.categoryJokeURL);
         const data = response.data;
         setCategories(data);
       } catch (error) {
         setError(error);
       }
+
+      setLoading(false);
     };
 
     fetchCategories();
@@ -57,6 +62,7 @@ export default function JokeCategories() {
       <h2>Categories</h2>
 
       {error && <Error errorText={error} />}
+      {loading && <Loading />}
 
       <Router>
         <nav>
@@ -75,4 +81,4 @@ export default function JokeCategories() {
       </Router>
     </DivOuter>
   );
-}
+};

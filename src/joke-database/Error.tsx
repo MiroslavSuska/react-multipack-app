@@ -11,6 +11,6 @@ type Props = {
   errorText: string;
 };
 
-export default function Error(props: Props) {
+export const Error = (props: Props) => {
   return <DivError>{props.errorText}</DivError>;
-}
+};
