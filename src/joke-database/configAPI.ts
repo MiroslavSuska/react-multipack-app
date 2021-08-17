@@ -1,6 +1,5 @@
-const getCategoryUrl = (category: string) => {
-  return `https://api.chucknorris.io/jokes/random?category=${category}`;
-};
+const getCategoryUrl = (category: string) =>
+  `https://api.chucknorris.io/jokes/random?category=${category}`;
 
 export const urls = {
   categoryJokeURL: 'https://api.chucknorris.io/jokes/categories',
