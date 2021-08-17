@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { JokeAPI } from './joke-database/JokeAPI';
 import { Link, Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+import { ReduxCounter } from './redux/ReduxCounter';
 import Counter from './counter/Counter';
 import HackerTyper from './hacker-typer/HackerTyper';
 import Home from './router-components/Home';
@@ -82,6 +83,9 @@ export class Navigation extends Component<any, any> {
               <Li>
                 <LinkStyled to='/jokeapi'>Joke API DB</LinkStyled>
               </Li>
+              <Li>
+                <LinkStyled to='/redux-counter'>Redux counter</LinkStyled>
+              </Li>
             </Ul>
           </nav>
 
@@ -108,6 +112,9 @@ export class Navigation extends Component<any, any> {
             </Route>
             <Route path='/jokeapi'>
               <JokeAPI />
+            </Route>
+            <Route path='/redux-counter'>
+              <ReduxCounter />
             </Route>
             <Route path='/'>
               <Home />
