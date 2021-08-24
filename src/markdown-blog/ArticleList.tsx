@@ -1,5 +1,5 @@
-import { BlogContext } from './MarkdownBlog';
 import { Link } from 'react-router-dom';
+import { LogicStateContext } from './MarkdownBlog';
 import { useContext } from 'react';
 import styled from 'styled-components';
 import theme from '../theme';
@@ -45,7 +45,7 @@ const DivAuthor = styled.div({
 });
 
 export const ArticleList = () => {
-  const { articles, setArticles } = useContext(BlogContext);
+  const { articles, setArticles } = useContext(LogicStateContext);
 
   return (
     <DivOuter>

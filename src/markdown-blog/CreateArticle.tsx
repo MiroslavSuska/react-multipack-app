@@ -1,4 +1,5 @@
-import { BlogContext } from './MarkdownBlog';
+import { LogicStateContext } from './MarkdownBlog';
+import { slugify } from './textHelpers';
 import { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
@@ -58,7 +59,7 @@ const Button = styled.button({
 });
 
 export const CreateArticle = () => {
-  const { articles, setArticles } = useContext(BlogContext);
+  const { articles, setArticles } = useContext(LogicStateContext);
   const [author, setAuthor] = useState('');
   const [title, setTitle] = useState('');
   const [text, setText] = useState('');
@@ -97,25 +98,6 @@ export const CreateArticle = () => {
 
       history.push('/');
     } else setAlert(true);
-  };
-
-  const slugify = (text: string) => {
-    text = text.replace(/^\s+|\s+$/g, ''); // trim
-    text = text.toLowerCase();
-
-    // remove accents, swap ñ for n, etc
-    var from = 'ãàáäâáº½èéëêìíïîõòóöôùúüûñçľščťžýňř·/_,:;';
-    var to = 'aaaaaeeeeeiiiiooooouuuunclsctzynr------';
-    for (var i = 0, l = from.length; i < l; i++) {
-      text = text.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
-    }
-
-    text = text
-      .replace(/[^a-z0-9 -]/g, '') // remove invalid chars
-      .replace(/\s+/g, '-') // collapse whitespace and replace by -
-      .replace(/-+/g, '-'); // collapse dashes
-
-    return text;
   };
 
   return (

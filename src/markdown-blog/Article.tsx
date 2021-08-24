@@ -1,4 +1,4 @@
-import { BlogContext } from './MarkdownBlog';
+import { LogicStateContext } from './MarkdownBlog';
 import { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
@@ -60,7 +60,7 @@ type article = {
 };
 
 export const Article = (props: { article: article }) => {
-  const { articles, setArticles } = useContext(BlogContext);
+  const { articles, setArticles } = useContext(LogicStateContext);
   let history = useHistory();
   const handleDelete = () => {
     setArticles(prev => prev.filter(article => article.id !== props.article.id));
