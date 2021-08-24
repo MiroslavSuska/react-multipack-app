@@ -12,6 +12,7 @@ const DivOuter = styled.div({
 const DivAlert = styled.div({
   color: theme.redColor,
   fontWeight: 'bold',
+  marginBottom: '7px',
 });
 
 const Form = styled.form({
@@ -63,7 +64,9 @@ export const CreateArticle = () => {
   const [author, setAuthor] = useState('');
   const [title, setTitle] = useState('');
   const [text, setText] = useState('');
-  const [alert, setAlert] = useState(false);
+  const [errorAuthor, setErrorAuthor] = useState(false);
+  const [errorTitle, setErrorTitle] = useState(false);
+  const [errorText, setErrorText] = useState(false);
   let history = useHistory();
 
   const handleAuthor = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -94,24 +97,51 @@ export const CreateArticle = () => {
       setAuthor('');
       setTitle('');
       setText('');
-      setAlert(false);
-
+      setErrorAuthor(false);
+      setErrorTitle(false);
+      setErrorText(false);
       history.push('/');
-    } else setAlert(true);
+    } else if (author === '') {
+      setErrorAuthor(true);
+      return;
+    } else if (title === '') {
+      setErrorTitle(true);
+      return;
+    } else if (text === '') {
+      setErrorText(true);
+      return;
+    }
   };
 
   return (
     <DivOuter>
       <Form action='' onSubmit={createArticle}>
-        <Input type='text' placeholder='Author' onChange={handleAuthor} value={author} autoFocus />
-        <Input type='text' placeholder='Title' onChange={handleTitle} value={title} />
+        <Input
+          style={{ borderColor: errorAuthor ? theme.redColor : theme.blackColor }}
+          type='text'
+          placeholder='Author'
+          onChange={handleAuthor}
+          value={author}
+          autoFocus
+        />
+        {errorAuthor && <DivAlert>Please fill an author name</DivAlert>}
+
+        <Input
+          style={{ borderColor: errorTitle ? theme.redColor : theme.blackColor }}
+          type='text'
+          placeholder='Title'
+          onChange={handleTitle}
+          value={title}
+        />
+        {errorTitle && <DivAlert>Please fill a title</DivAlert>}
+
         <Textarea
+          style={{ borderColor: errorText ? theme.redColor : theme.blackColor }}
           placeholder='Your markdown text ...'
           onChange={handleText}
           value={text}
         ></Textarea>
-
-        {alert && <DivAlert>Please fill all boxes</DivAlert>}
+        {errorText && <DivAlert>Please fill your markdown text</DivAlert>}
 
         <Button type='submit'>Create article</Button>
       </Form>
