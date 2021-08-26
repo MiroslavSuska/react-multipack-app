@@ -7,11 +7,25 @@
 body {
   background: rgb(29, 131, 161);
   color: #1d1e1f;
-  padding: 0;
+  padding: 10px;
   font-size: 18px;
   margin: 0;
 }
 
 .App {
   text-align: center;
+}
+
+@media all and (max-width: 700px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  h3 {
+    font-size: 1rem;
+  }
 }

@@ -5,24 +5,6 @@ import { urls } from './configAPI';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import theme from '../theme';
-
-const DivRandomJokes = styled.div({
-  marginBottom: '40px',
-  position: 'relative',
-});
-
-const Ul = styled.ul({
-  listStyleType: 'square',
-  padding: '0',
-  maxWidth: '1000px',
-  margin: 'auto',
-});
-
-const LiJoke = styled.li({
-  margin: '10px',
-  textAlign: 'left',
-});
 
 type joke = {
   categories: string[];
@@ -81,3 +63,20 @@ export const JokeAPI = () => {
     </DivRandomJokes>
   );
 };
+
+const DivRandomJokes = styled.div({
+  marginBottom: '40px',
+  position: 'relative',
+});
+
+const Ul = styled.ul({
+  listStyleType: 'square',
+  padding: '0',
+  maxWidth: '1000px',
+  margin: 'auto',
+});
+
+const LiJoke = styled.li({
+  margin: '10px',
+  textAlign: 'left',
+});

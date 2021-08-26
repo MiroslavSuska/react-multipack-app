@@ -2,33 +2,11 @@ import { Error } from './Error';
 import { Link, Route, BrowserRouter as Router, Switch, useRouteMatch } from 'react-router-dom';
 import { Loading } from './Loading';
 import { SpecificCategory } from './SpecificCategory';
+import { theme } from '../theme';
 import { urls } from './configAPI';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import theme from '../theme';
-
-const DivOuter = styled.div({
-  margin: '50px 0',
-});
-
-const Ul = styled.ul({
-  listStyleType: 'none',
-  padding: '0',
-  display: 'flex',
-  flexWrap: 'wrap',
-  justifyContent: 'center',
-});
-
-const Li = styled.li({
-  margin: '5px',
-  fontSize: '20px',
-});
-
-const LinkStyled = styled(Link)({
-  color: theme.whiteColor,
-  textDecoration: 'none',
-});
 
 type category = {
   categoryName: string;
@@ -82,3 +60,25 @@ export const JokeCategories = () => {
     </DivOuter>
   );
 };
+
+const DivOuter = styled.div({
+  margin: '50px 0',
+});
+
+const Ul = styled.ul({
+  listStyleType: 'none',
+  padding: '0',
+  display: 'flex',
+  flexWrap: 'wrap',
+  justifyContent: 'center',
+});
+
+const Li = styled.li({
+  margin: '5px',
+  fontSize: '20px',
+});
+
+const LinkStyled = styled(Link)({
+  color: theme.whiteColor,
+  textDecoration: 'none',
+});

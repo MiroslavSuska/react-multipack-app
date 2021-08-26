@@ -1,42 +1,7 @@
 import { Component } from 'react';
+import { theme } from '../theme';
 import React from 'react';
 import styled from 'styled-components';
-
-const Li = styled.li({
-  display: 'flex',
-  alignContent: 'center',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  backgroundColor: 'whitesmoke',
-  borderBottom: '1px solid #757575',
-  padding: '0 8px',
-  textAlign: 'center',
-  height: '50px',
-  color: '#484848',
-  fontSize: '18px',
-});
-
-const InputCheckbox = styled.input({
-  borderRadius: '50%',
-  width: '30px',
-  height: '30px',
-  cursor: 'pointer',
-});
-
-const Button = styled.button({
-  width: '30px',
-  height: '30px',
-  cursor: 'pointer',
-  fontWeight: 'bold',
-});
-
-const DivText = styled.div({
-  width: '80%',
-  height: '94%',
-  display: 'flex',
-  alignItems: 'center',
-  padding: '2px 0',
-});
 
 type Props = {
   listItem: {
@@ -65,9 +30,6 @@ export default class TodoListItem extends Component<Props, State> {
   }
 
   handleCheckbox = () => {
-    // this.setState(prevState => ({
-    //   isChecked: !prevState.isChecked,
-    // }));
     this.props.handleCheck(this.props.listItem.id);
   };
 
@@ -85,7 +47,7 @@ export default class TodoListItem extends Component<Props, State> {
     }
   };
 
-  handleKeyDown = (event: any) => {
+  handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (this.state.isEditing === true) {
       if (event.key === 'Enter') {
         event.preventDefault();
@@ -141,3 +103,39 @@ export default class TodoListItem extends Component<Props, State> {
     );
   }
 }
+
+const Li = styled.li({
+  display: 'flex',
+  alignContent: 'center',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  backgroundColor: 'whitesmoke',
+  borderBottom: `1px solid ${theme.listBorderColor}`,
+  padding: '0 8px',
+  textAlign: 'center',
+  height: '50px',
+  color: theme.listColor,
+  fontSize: '18px',
+});
+
+const InputCheckbox = styled.input({
+  borderRadius: '50%',
+  width: '30px',
+  height: '30px',
+  cursor: 'pointer',
+});
+
+const Button = styled.button({
+  width: '30px',
+  height: '30px',
+  cursor: 'pointer',
+  fontWeight: 'bold',
+});
+
+const DivText = styled.div({
+  width: '80%',
+  height: '94%',
+  display: 'flex',
+  alignItems: 'center',
+  padding: '2px 0',
+});

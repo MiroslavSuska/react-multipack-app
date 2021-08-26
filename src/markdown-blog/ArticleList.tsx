@@ -1,8 +1,28 @@
 import { Link } from 'react-router-dom';
 import { LogicStateContext } from './MarkdownBlog';
+import { theme } from '../theme';
 import { useContext } from 'react';
 import styled from 'styled-components';
-import theme from '../theme';
+
+export const ArticleList = () => {
+  const { articles, setArticles } = useContext(LogicStateContext);
+
+  return (
+    <DivOuter>
+      <h2>All articles: </h2>
+      <Ul>
+        {articles.map(article => (
+          <li key={article.id}>
+            <LinkStyled to={'/article/' + article.id}>
+              <DivTitle>{article.title}</DivTitle>
+              <DivAuthor>by {article.author}</DivAuthor>
+            </LinkStyled>
+          </li>
+        ))}
+      </Ul>
+    </DivOuter>
+  );
+};
 
 const DivOuter = styled.div({
   marginBottom: '50px',
@@ -11,11 +31,6 @@ const DivOuter = styled.div({
 const Ul = styled.ul({
   listStyleType: 'none',
   padding: '0',
-});
-
-const Li = styled.li({
-  margin: '5px',
-  fontSize: '20px',
 });
 
 const LinkStyled = styled(Link)({
@@ -43,23 +58,3 @@ const DivTitle = styled.div({
 const DivAuthor = styled.div({
   fontSize: '16px',
 });
-
-export const ArticleList = () => {
-  const { articles, setArticles } = useContext(LogicStateContext);
-
-  return (
-    <DivOuter>
-      <h2>All articles: </h2>
-      <Ul>
-        {articles.map(article => (
-          <li key={article.id}>
-            <LinkStyled to={'/article/' + article.id}>
-              <DivTitle>{article.title}</DivTitle>
-              <DivAuthor>by {article.author}</DivAuthor>
-            </LinkStyled>
-          </li>
-        ))}
-      </Ul>
-    </DivOuter>
-  );
-};

@@ -1,29 +1,6 @@
 import { Component } from 'react';
+import { theme } from '../theme';
 import styled from 'styled-components';
-
-const OuterDiv = styled.div({
-  width: '600px',
-  margin: 'auto',
-  display: 'flex',
-  justifyContent: 'space-between',
-});
-
-const DivItems = styled.div({
-  fontSize: '18px',
-  fontWeight: 'bold',
-});
-
-const ClearLink = styled.a({
-  textDecoration: 'none',
-  fontWeight: 'bold',
-  fontSize: '18px',
-  color: '#1d1e1f',
-  transition: 'all .2s ease',
-  ':hover': {
-    color: 'white',
-    transition: 'all .2s ease',
-  },
-});
 
 type Props = {
   dataLength: number;
@@ -40,7 +17,7 @@ export default class FilterBar extends Component<Props, {}> {
       <OuterDiv>
         <DivItems>
           {this.props.dataLength} item
-          {this.props.dataLength === 0 ? '' : 's'} left
+          {this.props.dataLength === 1 ? '' : 's'} left
         </DivItems>
         <div>
           <ClearLink href='#' onClick={this.clearFilter}>
@@ -51,3 +28,26 @@ export default class FilterBar extends Component<Props, {}> {
     );
   }
 }
+
+const OuterDiv = styled.div({
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'space-between',
+});
+
+const DivItems = styled.div({
+  fontSize: '18px',
+  fontWeight: 'bold',
+});
+
+const ClearLink = styled.a({
+  textDecoration: 'none',
+  fontWeight: 'bold',
+  fontSize: '18px',
+  color: theme.secondaryDark,
+  transition: 'all .2s ease',
+  ':hover': {
+    color: theme.whiteColor,
+    transition: 'all .2s ease',
+  },
+});

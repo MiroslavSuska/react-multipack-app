@@ -2,6 +2,7 @@ import { Component } from 'react';
 import FilterBar from './FilterBar';
 import TodoForm from './TodoForm';
 import TodoList from './TodoList';
+import styled from 'styled-components';
 
 type State = {
   dataList: {
@@ -87,7 +88,7 @@ export default class Todo extends Component<{}, State> {
 
   render() {
     return (
-      <div>
+      <DivWrap>
         <h1>Todo app</h1>
         <TodoForm formCallback={this.handleFormCallback} />
         <TodoList
@@ -97,7 +98,16 @@ export default class Todo extends Component<{}, State> {
           saveNewData={this.saveNewData}
         />
         <FilterBar dataLength={this.state.dataList.length} clearFilter={this.clearFilter} />
-      </div>
+      </DivWrap>
     );
   }
 }
+
+const DivWrap = styled.div({
+  maxWidth: '600px',
+  width: '100%',
+  margin: 'auto',
+  '@media all and (max-width: 700px)': {
+    maxWidth: '100%',
+  },
+});

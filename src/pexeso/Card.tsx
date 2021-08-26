@@ -1,23 +1,6 @@
-import { useEffect, useState } from 'react';
+import { theme } from '../theme';
 import coverFrame from './img/cover.jpg';
 import styled from 'styled-components';
-import theme from '../theme';
-
-const Img = styled.img({
-  width: '120px',
-  height: '120px',
-  boxSizing: 'border-box',
-  border: `4px solid ${theme.blackColor}`,
-  cursor: 'pointer',
-  margin: '4px',
-});
-
-const DivEmpty = styled.div({
-  width: '120px',
-  height: '120px',
-  margin: '4px',
-  backgroundColor: theme.transparent,
-});
 
 type Props = {
   card: {
@@ -45,3 +28,28 @@ export default function Card(props: Props) {
     </div>
   );
 }
+
+const Img = styled.img({
+  width: '120px',
+  height: '120px',
+  boxSizing: 'border-box',
+  border: `4px solid ${theme.blackColor}`,
+  cursor: 'pointer',
+  margin: '4px',
+  '@media all and (max-width: 700px)': {
+    width: '80px',
+    height: '80px',
+    borderWidth: '2px',
+  },
+});
+
+const DivEmpty = styled.div({
+  width: '120px',
+  height: '120px',
+  margin: '4px',
+  backgroundColor: theme.transparent,
+  '@media all and (max-width: 700px)': {
+    width: '80px',
+    height: '80px',
+  },
+});

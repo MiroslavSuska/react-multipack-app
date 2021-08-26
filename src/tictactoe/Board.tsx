@@ -1,15 +1,7 @@
 import { Component } from 'react';
+import { theme } from '../theme';
 import Square from './Square';
 import styled from 'styled-components';
-import theme from '../theme';
-
-const DivBoard = styled.div({
-  width: theme.boardSize,
-  height: theme.boardSize,
-  display: 'flex',
-  flexWrap: 'wrap',
-  margin: 'auto',
-});
 
 type squareType = null | 'X' | 'O';
 
@@ -36,3 +28,15 @@ export default class Board extends Component<Props, {}> {
     );
   }
 }
+
+const DivBoard = styled.div({
+  width: '500px',
+  height: '500px',
+  display: 'flex',
+  flexWrap: 'wrap',
+  margin: 'auto',
+  '@media all and (max-width: 700px)': {
+    width: '400px',
+    height: '400px',
+  },
+});

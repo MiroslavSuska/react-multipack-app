@@ -1,7 +1,6 @@
 import { BlogNavigation } from './BlogNavigation';
 import { genericHookContextBuilder } from './genericHookContextBuilder';
 import { useLocalStorage } from './useLocalStorage';
-import theme from '../theme';
 
 const useLogicState = () => {
   const [articles, setArticles] = useLocalStorage('articles', [

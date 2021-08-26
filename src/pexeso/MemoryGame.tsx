@@ -1,42 +1,8 @@
+import { ButtonStyled } from '../theme';
 import { cards } from './cards';
 import { useEffect, useState } from 'react';
 import Card from './Card';
 import styled from 'styled-components';
-import theme from '../theme';
-
-const DivOuter = styled.div({
-  marginBottom: '50px',
-});
-
-const DivBoard = styled.div({
-  maxWidth: '600px',
-  display: 'flex',
-  flexWrap: 'wrap',
-  margin: 'auto',
-  padding: '20px',
-  justifyContent: 'center',
-});
-
-const Button = styled.button({
-  color: theme.secondaryDark,
-  backgroundColor: theme.whiteColor,
-  borderColor: theme.secondaryDark,
-  fontSize: '1.2rem',
-  fontWeight: 'bold',
-  padding: '0.7rem',
-  borderRadius: '5px',
-  boxShadow: 'none',
-  maxWidth: '8rem',
-  width: '100%',
-  cursor: 'pointer',
-  transition: 'all .3s ease',
-  borderStyle: 'solid',
-  ':hover': {
-    color: theme.primaryBlue,
-    borderColor: theme.primaryBlue,
-    transition: 'all .3s ease',
-  },
-});
 
 type card = {
   id: number;
@@ -160,3 +126,21 @@ export default function MemoryGame() {
     </DivOuter>
   );
 }
+
+const DivOuter = styled.div({
+  marginBottom: '50px',
+});
+
+const DivBoard = styled.div({
+  maxWidth: '600px',
+  width: '100%',
+  display: 'flex',
+  flexWrap: 'wrap',
+  margin: 'auto',
+  justifyContent: 'center',
+  '@media all and (max-width: 700px)': {
+    maxWidth: '100%',
+  },
+});
+
+const Button = ButtonStyled;

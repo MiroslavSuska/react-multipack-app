@@ -3,37 +3,9 @@ import { ArticleList } from './ArticleList';
 import { CreateArticle } from './CreateArticle';
 import { Link, Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import { LogicStateContext } from './MarkdownBlog';
+import { theme } from '../theme';
 import { useContext } from 'react';
 import styled from 'styled-components';
-import theme from '../theme';
-
-const DivOuter = styled.div({
-  marginBottom: '50px',
-});
-
-const Ul = styled.ul({
-  listStyleType: 'none',
-  padding: '0',
-  display: 'flex',
-  flexWrap: 'wrap',
-  justifyContent: 'center',
-});
-
-const Li = styled.li({
-  margin: '12px',
-  fontSize: '20px',
-});
-
-const LinkStyled = styled(Link)({
-  color: theme.whiteColor,
-  textDecoration: 'none',
-  fontWeight: 'bold',
-  transition: 'all .3s ease',
-  ':hover': {
-    color: theme.secondaryDark,
-    transition: 'all .3s ease',
-  },
-});
 
 export const BlogNavigation = () => {
   const { articles, setArticles } = useContext(LogicStateContext);
@@ -70,3 +42,31 @@ export const BlogNavigation = () => {
     </DivOuter>
   );
 };
+
+const DivOuter = styled.div({
+  marginBottom: '50px',
+});
+
+const Ul = styled.ul({
+  listStyleType: 'none',
+  padding: '0',
+  display: 'flex',
+  flexWrap: 'wrap',
+  justifyContent: 'center',
+});
+
+const Li = styled.li({
+  margin: '12px',
+  fontSize: '20px',
+});
+
+const LinkStyled = styled(Link)({
+  color: theme.whiteColor,
+  textDecoration: 'none',
+  fontWeight: 'bold',
+  transition: 'all .3s ease',
+  ':hover': {
+    color: theme.secondaryDark,
+    transition: 'all .3s ease',
+  },
+});

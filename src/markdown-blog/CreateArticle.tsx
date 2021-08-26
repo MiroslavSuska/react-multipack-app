@@ -1,63 +1,9 @@
+import { ButtonStyled, theme } from '../theme';
 import { LogicStateContext } from './MarkdownBlog';
 import { slugify } from './textHelpers';
 import { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import theme from '../theme';
-
-const DivOuter = styled.div({
-  marginBottom: '50px',
-});
-
-const DivAlert = styled.div({
-  color: theme.redColor,
-  fontWeight: 'bold',
-  marginBottom: '7px',
-});
-
-const Form = styled.form({
-  display: 'flex',
-  flexDirection: 'column',
-  margin: 'auto',
-
-  maxWidth: '600px',
-});
-
-const Input = styled.input({
-  height: '35px',
-  marginBottom: '7px',
-  fontSize: '18px',
-  padding: '0 5px',
-});
-
-const Textarea = styled.textarea({
-  minHeight: '300px',
-  marginBottom: '7px',
-  fontSize: '18px',
-  padding: '7px',
-});
-
-const Button = styled.button({
-  color: theme.secondaryDark,
-  backgroundColor: theme.whiteColor,
-  borderColor: theme.secondaryDark,
-  fontSize: '1.2rem',
-  fontWeight: 'bold',
-  padding: '0.7rem',
-  borderRadius: '5px',
-  boxShadow: 'none',
-  maxWidth: '10rem',
-  width: '100%',
-  cursor: 'pointer',
-  transition: 'all .3s ease',
-  borderStyle: 'solid',
-  margin: '30px auto',
-  ':hover': {
-    color: theme.primaryBlue,
-    borderColor: theme.primaryBlue,
-    transition: 'all .3s ease',
-  },
-});
 
 export const CreateArticle = () => {
   const { articles, setArticles } = useContext(LogicStateContext);
@@ -148,3 +94,37 @@ export const CreateArticle = () => {
     </DivOuter>
   );
 };
+
+const DivOuter = styled.div({
+  marginBottom: '50px',
+});
+
+const DivAlert = styled.div({
+  color: theme.redColor,
+  fontWeight: 'bold',
+  marginBottom: '7px',
+});
+
+const Form = styled.form({
+  display: 'flex',
+  flexDirection: 'column',
+  margin: 'auto',
+
+  maxWidth: '600px',
+});
+
+const Input = styled.input({
+  height: '35px',
+  marginBottom: '7px',
+  fontSize: '18px',
+  padding: '0 5px',
+});
+
+const Textarea = styled.textarea({
+  minHeight: '300px',
+  marginBottom: '7px',
+  fontSize: '18px',
+  padding: '7px',
+});
+
+const Button = ButtonStyled;

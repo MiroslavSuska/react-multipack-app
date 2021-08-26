@@ -1,20 +1,6 @@
 import { Component } from 'react';
+import { theme } from '../theme';
 import styled from 'styled-components';
-import theme from '../theme';
-
-const DivSquare = styled.div({
-  width: theme.squareSize,
-  height: theme.squareSize,
-  lineHeight: theme.squareSize,
-  backgroundColor: theme.whiteColor,
-  color: theme.primaryBlue,
-  textAlign: 'center',
-  boxSizing: 'border-box',
-  border: '2px solid black',
-  fontSize: '18px',
-  fontWeight: 'bold',
-  cursor: 'pointer',
-});
 
 type Props = {
   symbol: null | 'X' | 'O';
@@ -31,3 +17,22 @@ export default class Square extends Component<Props, {}> {
     return <DivSquare onClick={this.handleClick}>{this.props.symbol}</DivSquare>;
   }
 }
+
+const DivSquare = styled.div({
+  width: '50px',
+  height: '50px',
+  lineHeight: '50px',
+  backgroundColor: theme.whiteColor,
+  color: theme.primaryBlue,
+  textAlign: 'center',
+  boxSizing: 'border-box',
+  border: `2px solid ${theme.blackColor}`,
+  fontSize: '18px',
+  fontWeight: 'bold',
+  cursor: 'pointer',
+  '@media all and (max-width: 700px)': {
+    width: '40px',
+    height: '40px',
+    lineHeight: '40px',
+  },
+});

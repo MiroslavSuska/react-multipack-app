@@ -5,19 +5,6 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
-import theme from '../theme';
-
-const Ul = styled.ul({
-  listStyleType: 'square',
-  padding: '0',
-  maxWidth: '1000px',
-  margin: 'auto',
-});
-
-const LiJoke = styled.li({
-  margin: '10px',
-  textAlign: 'left',
-});
 
 type params = {
   category: string;
@@ -89,3 +76,15 @@ export const SpecificCategory = () => {
     </div>
   );
 };
+
+const Ul = styled.ul({
+  listStyleType: 'square',
+  padding: '0',
+  maxWidth: '1000px',
+  margin: 'auto',
+});
+
+const LiJoke = styled.li({
+  margin: '10px',
+  textAlign: 'left',
+});

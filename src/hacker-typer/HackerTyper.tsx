@@ -1,18 +1,9 @@
 import { Component } from 'react';
 import { data } from './data';
+import { theme } from '../theme';
 import InfoBox from './InfoBox';
 import React from 'react';
 import styled from 'styled-components';
-
-const DivOutput = styled.div({
-  backgroundColor: 'black',
-  color: '#00FF00',
-  whiteSpace: 'pre-wrap',
-  textAlign: 'left',
-  padding: '30px',
-  minHeight: '600px',
-  position: 'relative',
-});
 
 type State = {
   text: string;
@@ -35,7 +26,7 @@ export default class HackerTyper extends Component<{}, State> {
     this.divRef = React.createRef();
   }
 
-  handleKeyDown = (event: any) => {
+  handleKeyDown = (event: KeyboardEvent) => {
     this.setState({
       text: data.slice(0, this.state.cut),
     });
@@ -46,7 +37,7 @@ export default class HackerTyper extends Component<{}, State> {
     this.handleBoxes(event);
   };
 
-  handleBoxes = (event: any) => {
+  handleBoxes = (event: KeyboardEvent) => {
     if (event.key === 'Alt') {
       event.preventDefault();
 
@@ -110,3 +101,16 @@ export default class HackerTyper extends Component<{}, State> {
     );
   }
 }
+
+const DivOutput = styled.div({
+  backgroundColor: 'black',
+  color: theme.hackerGreenColor,
+  whiteSpace: 'pre-wrap',
+  textAlign: 'left',
+  padding: '30px',
+  minHeight: '600px',
+  position: 'relative',
+  '@media all and (max-width: 700px)': {
+    fontSize: '0.8rem',
+  },
+});
