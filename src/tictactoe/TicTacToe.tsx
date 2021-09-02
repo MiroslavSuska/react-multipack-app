@@ -1,4 +1,4 @@
-import { ButtonStyled } from '../theme';
+import { ButtonStyled, theme } from '../theme';
 import { Component } from 'react';
 import { checkWinner } from './winningLogic';
 import Board from './Board';
@@ -102,6 +102,7 @@ const DivPlayer = styled.div({
   fontSize: '20px',
   fontWeight: 'bold',
   marginBottom: '20px',
+  color: theme.whiteColor,
 });
 
 const Button = ButtonStyled;
