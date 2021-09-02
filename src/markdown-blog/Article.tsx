@@ -26,7 +26,7 @@ export const Article = (props: { article: article }) => {
       <DivOuter>
         <H1>{props.article.title}</H1>
         <H2>by {props.article.author}</H2>
-        <ReactMarkdown>{props.article.text}</ReactMarkdown>
+        <ReactMarkdownStyled>{props.article.text}</ReactMarkdownStyled>
       </DivOuter>
 
       <ButtonDelete onClick={handleDelete}>Delete article</ButtonDelete>
@@ -57,6 +57,10 @@ const H2 = styled.h2({
   fontSize: '24px',
   fontWeight: 'normal',
   borderBottom: `1px solid ${theme.secondaryDark}`,
+});
+
+const ReactMarkdownStyled = styled(ReactMarkdown)({
+  color: theme.blackColor,
 });
 
 const ButtonDelete = ButtonStyled;

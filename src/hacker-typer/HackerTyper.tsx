@@ -104,7 +104,7 @@ export default class HackerTyper extends Component<{}, State> {
 
 const DivOutput = styled.div({
   backgroundColor: 'black',
-  color: theme.hackerGreenColor,
+  color: theme.greenColor,
   whiteSpace: 'pre-wrap',
   textAlign: 'left',
   padding: '30px',

@@ -1,6 +1,7 @@
 import { Error } from './Error';
 import { JokeCategories } from './JokeCategories';
 import { Loading } from './Loading';
+import { theme } from '../theme';
 import { urls } from './configAPI';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -48,6 +49,9 @@ export const JokeAPI = () => {
   return (
     <DivRandomJokes>
       <h1>Chuck Norris joke API </h1>
+
+      <JokeCategories />
+
       <h2>Random jokes:</h2>
 
       {errors.length > 0 && errors.map((error, index) => <Error errorText={error} key={index} />)}
@@ -58,8 +62,6 @@ export const JokeAPI = () => {
           <LiJoke key={index}>{joke.value}</LiJoke>
         ))}
       </Ul>
-
-      <JokeCategories />
     </DivRandomJokes>
   );
 };
@@ -79,4 +81,5 @@ const Ul = styled.ul({
 const LiJoke = styled.li({
   margin: '10px',
   textAlign: 'left',
+  color: theme.whiteColor,
 });

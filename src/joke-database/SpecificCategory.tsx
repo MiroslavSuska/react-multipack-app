@@ -1,5 +1,6 @@
 import { Error } from './Error';
 import { Loading } from './Loading';
+import { theme } from '../theme';
 import { urls } from './configAPI';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -87,4 +88,5 @@ const Ul = styled.ul({
 const LiJoke = styled.li({
   margin: '10px',
   textAlign: 'left',
+  color: theme.whiteColor,
 });

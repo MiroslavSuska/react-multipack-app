@@ -38,6 +38,7 @@ const OuterDiv = styled.div({
 const DivItems = styled.div({
   fontSize: '18px',
   fontWeight: 'bold',
+  color: theme.whiteColor,
 });
 
 const ClearLink = styled.a({

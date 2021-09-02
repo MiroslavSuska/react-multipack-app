@@ -40,7 +40,13 @@ export default class TodoForm extends Component<Props, State> {
     return (
       <div>
         <form action='' onSubmit={this.handleSubmit}>
-          <Input type='text' onChange={this.handleChange} value={this.state.text} autoFocus />
+          <Input
+            type='text'
+            onChange={this.handleChange}
+            value={this.state.text}
+            autoFocus
+            placeholder='Your todo note ...'
+          />
         </form>
       </div>
     );

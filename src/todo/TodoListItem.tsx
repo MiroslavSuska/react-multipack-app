@@ -98,7 +98,7 @@ export default class TodoListItem extends Component<Props, State> {
         >
           {this.props.listItem.text}
         </DivText>
-        <Button onClick={this.handleDeleteItem}>X</Button>
+        <ButtonDelete onClick={this.handleDeleteItem}>X</ButtonDelete>
       </Li>
     );
   }
@@ -113,7 +113,7 @@ const Li = styled.li({
   borderBottom: `1px solid ${theme.listBorderColor}`,
   padding: '0 8px',
   textAlign: 'center',
-  height: '50px',
+  minHeight: '50px',
   color: theme.listColor,
   fontSize: '18px',
 });
@@ -125,11 +125,25 @@ const InputCheckbox = styled.input({
   cursor: 'pointer',
 });
 
-const Button = styled.button({
+const ButtonDelete = styled.button({
   width: '30px',
   height: '30px',
+  display: 'flex',
+  justifyContent: 'center',
+  alignContent: 'center',
   cursor: 'pointer',
   fontWeight: 'bold',
+  outline: 'none',
+  transition: 'all .3s ease',
+  border: `1px solid ${theme.primaryBlue}`,
+  color: theme.secondaryDark,
+  backgroundColor: theme.primaryBlue,
+  ':hover': {
+    color: theme.primaryBlue,
+    backgroundColor: theme.whiteColor,
+    borderColor: theme.primaryBlue,
+    transition: 'all .3s ease',
+  },
 });
 
 const DivText = styled.div({
@@ -138,4 +152,7 @@ const DivText = styled.div({
   display: 'flex',
   alignItems: 'center',
   padding: '2px 0',
+  color: theme.primaryBlue,
+  fontWeight: 'bold',
+  textAlign: 'left',
 });

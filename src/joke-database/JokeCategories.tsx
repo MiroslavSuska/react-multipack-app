@@ -79,6 +79,11 @@ const Li = styled.li({
 });
 
 const LinkStyled = styled(Link)({
-  color: theme.whiteColor,
   textDecoration: 'none',
+  color: theme.whiteColor,
+  transition: 'all .3s ease',
+  ':hover': {
+    color: theme.secondaryDark,
+    transition: 'all .3s ease',
+  },
 });

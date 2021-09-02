@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { theme } from '../theme';
 import Buttons from './Buttons';
 
 type State = {
@@ -32,7 +33,11 @@ export default class Counter extends Component<{}, State> {
         <h1
           style={{
             color:
-              this.state.counter > 0 ? 'rgb(16 90 16)' : this.state.counter < 0 ? 'red' : 'black',
+              this.state.counter > 0
+                ? theme.greenColor
+                : this.state.counter < 0
+                ? theme.redColor
+                : theme.secondaryDark,
           }}
         >
           {this.state.counter}

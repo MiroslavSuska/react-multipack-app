@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 export const theme = {
-  primaryBlue: 'rgb(29, 131, 161)',
-  secondaryDark: '#1d1e1f',
-  whiteColor: 'white',
+  primaryBlue: '#022449',
+  secondaryDark: '#F27D42',
+  whiteColor: '#d9f2f8',
   blackColor: 'black',
   redColor: 'red',
-  hackerGreenColor: '#00FF00',
+  greenColor: '#00FF00',
   hackerLightGreyColor: '#999',
   hackerDarkGreyColor: '#333',
   hackerRedColor: '#f00',
@@ -18,6 +18,25 @@ export const theme = {
   boardSize: '500px',
   squareSize: '50px',
 };
+
+// export const theme = {
+//   primaryBlue: '#287a76',
+//   secondaryDark: '#17252A',
+//   whiteColor: '#DEF2F1',
+//   blackColor: 'black',
+//   redColor: 'red',
+//   greenColor: '#00FF00',
+//   hackerLightGreyColor: '#999',
+//   hackerDarkGreyColor: '#333',
+//   hackerRedColor: '#f00',
+//   hackerDarkRedColor: '#511',
+//   boxShadowColor: 'rgba(58, 58, 58, 0.2) 0px 7px 29px 0px',
+//   listBorderColor: '#757575',
+//   listColor: '#484848',
+//   transparent: 'transparent',
+//   boardSize: '500px',
+//   squareSize: '50px',
+// };
 
 export const ButtonStyled = styled.button({
   color: theme.secondaryDark,

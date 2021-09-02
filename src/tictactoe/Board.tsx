@@ -39,4 +39,12 @@ const DivBoard = styled.div({
     width: '400px',
     height: '400px',
   },
+  '@media all and (max-width: 500px)': {
+    width: '300px',
+    height: '300px',
+  },
+  '@media all and (max-width: 400px)': {
+    width: '200px',
+    height: '200px',
+  },
 });

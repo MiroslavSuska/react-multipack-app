@@ -35,4 +35,14 @@ const DivSquare = styled.div({
     height: '40px',
     lineHeight: '40px',
   },
+  '@media all and (max-width: 500px)': {
+    width: '30px',
+    height: '30px',
+    lineHeight: '30px',
+  },
+  '@media all and (max-width: 400px)': {
+    width: '20px',
+    height: '20px',
+    lineHeight: '20px',
+  },
 });

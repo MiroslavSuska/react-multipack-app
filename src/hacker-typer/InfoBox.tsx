@@ -11,7 +11,7 @@ export default class InfoBox extends Component<Props, {}> {
     return (
       <DivBox
         style={{
-          color: this.props.boxText === 'green' ? theme.hackerGreenColor : theme.hackerRedColor,
+          color: this.props.boxText === 'green' ? theme.greenColor : theme.hackerRedColor,
           borderColor:
             this.props.boxText === 'green' ? theme.hackerLightGreyColor : theme.hackerRedColor,
           backgroundColor:
@@ -29,7 +29,7 @@ const DivBox = styled.div({
   top: '40%',
   left: '50%',
   transform: 'translate(-50%, 0)',
-  color: theme.hackerGreenColor,
+  color: theme.greenColor,
   border: `1px solid ${theme.hackerLightGreyColor}`,
   backgroundColor: theme.hackerDarkGreyColor,
   textAlign: 'center',

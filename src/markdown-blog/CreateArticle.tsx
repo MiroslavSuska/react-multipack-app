@@ -89,7 +89,7 @@ export const CreateArticle = () => {
         ></Textarea>
         {errorText && <DivAlert>Please fill your markdown text</DivAlert>}
 
-        <Button type='submit'>Create article</Button>
+        <ButtonSubmit type='submit'>Create article</ButtonSubmit>
       </Form>
     </DivOuter>
   );
@@ -127,4 +127,6 @@ const Textarea = styled.textarea({
   padding: '7px',
 });
 
-const Button = ButtonStyled;
+const ButtonSubmit = styled(ButtonStyled)({
+  margin: '30px auto',
+});

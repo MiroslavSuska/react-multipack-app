@@ -16,7 +16,7 @@ export const CounterTemplate = () => {
 
   return (
     <div>
-      <h1>Simple counter app</h1>
+      <h1>Counter app with redux</h1>
       <h1>{counter}</h1>
       <Button onClick={() => dispatch(increment(1))}>+ 1</Button>
       <Button onClick={() => dispatch(increment(2))}>+ 2</Button>
