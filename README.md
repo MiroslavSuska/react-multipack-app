@@ -6,9 +6,13 @@
 
 Simple counter app using two buttons for increment and decrement number
 
+---
+
 ### Counter application using Redux
 
 Counter app with more mathematical operations, but now with Redux library to store global state.
+
+---
 
 ### Todo application
 
