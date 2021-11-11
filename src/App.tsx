@@ -32,6 +32,11 @@ const DivBody = styled.div({
   h3: {
     color: theme.secondaryDark,
   },
+  h4: {
+    fontSize: '1.6rem',
+    marginBottom: '20px',
+    color: theme.blackColor,
+  },
 
   ' *, :after, :before': {
     boxSizing: 'border-box',
@@ -47,6 +52,9 @@ const DivBody = styled.div({
 
     h3: {
       fontSize: '1rem',
+    },
+    h4: {
+      fontSize: '1.2rem',
     },
   },
 });
